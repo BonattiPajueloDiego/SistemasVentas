@@ -1,0 +1,58 @@
+{% extends 'home.html' %}
+
+{% block body %}
+    <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Header -->
+        {% include 'vertical/header.html' %}
+        <!-- Sidebar -->
+        {% include 'vertical/sidebar.html' %}
+        <!-- Content -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 image">
+                            <span class="brand-text ">UNIVERSIDAD CESAR VALLEJO </span>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                                <li class="breadcrumb-item"><a href="{{ list_url }}">{{ nombre }}</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        {% include 'footer.html' %}
+    </div>
+    <!-- Block javascript -->
+    {% block javascript %}
+
+    {% endblock %}
+    <script> <!-- muestra mensajes de error por pribilegios de acceso-->
+    {% if messages %}
+        var html = '<p>';
+        {% for message in messages %}
+            html += '{{ message }} <br>';
+        {% endfor %}
+        html += '<p>';
+        Swal.fire({
+            title: 'Error!',
+            html: html,
+            icon: 'error'
+        });
+    {% endif %}
+    </script>
+
+    </body>
+{% endblock %}

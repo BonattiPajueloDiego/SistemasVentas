@@ -1,0 +1,42 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 5%;">Nro</th>
+        <th scope="col" style="width: 20%;">Nombre</th>
+        <th scope="col" style="width: 20%;">Marca</th>
+        <th scope="col" style="width: 10%;">P.Compra</th>
+        <th scope="col" style="width: 10%;">P.Venta</th>
+       <!-- <th scope="col" style="width: 5%;">Stock</th>-->
+        <!--  revizar le stock de los productos en modelo- vista y template-->
+        <th scope="col" style="width: 10%;">Imagen</th>
+        <th scope="col" style="width: 20%;">Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+    {% for obj in object_list %}
+        <tr>
+            <td>{{ obj.id }}</td>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.mark.name }}</td>
+            <td>{{ obj.purchase_price }}</td>
+            <td>{{ obj.sale_price }}</td>
+            <!--<td>{{ obj.stock }}</td>-->
+
+            <td class="text-center">
+                {#  {{ obj.image }}#}
+                <img src="{{ obj.get_image }}" class="img-fluid d-block mx-auto" style="width: 20px; height: 20px;">
+            </td>
+
+            <td class="text-center">
+                <a href="{% url 'erp:ProductUpdateView' obj.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'erp:ProductDeleteView' obj.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

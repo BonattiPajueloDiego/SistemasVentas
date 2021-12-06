@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+    <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Header -->
+        {% include 'vertical/header.html' %}
+        <!-- Sidebar -->
+        {% include 'vertical/sidebar.html' %}
+        <!-- Content -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <center><h1>INVERSIONES CHA & BI S.R.L. </h1></center>
+                            <hr>
+                            <center><a><img src="{% static 'img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"></a></center>
+                        </div>
+
+
+                    </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <div><h1 class="m-0 text-dark"> GERENTE GENERAL: MORENO ZORRILLA EDISON MEDRANO </h1></div>
+                    <div><h1 class="m-0 text-dark"> RUC:20602840001 </h1></div>
+                    <div><h1 class="m-0 text-dark"> DIRECCIÓN: MAYORAZGO 1 LIMA, LIMA - SAN MARTIN DE PORRES </h1></div>
+                    <div><h1 class="m-0 text-dark"> TELEFONO: 01 345-3422 </h1></div>
+
+
+
+
+                </div>
+            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        {% include 'footer.html' %}
+    </div>
+    <!-- Block javascript -->
+    {% block javascript %}
+
+    {% endblock %}
+    <script> <!-- muestra mensajes de error por pribilegios de acceso-->
+    {% if messages %}
+        var html = '<p>';
+        {% for message in messages %}
+            html += '{{ message }} <br>';
+        {% endfor %}
+        html += '<p>';
+        Swal.fire({
+            title: 'Error!',
+            html: html,
+            icon: 'error'
+        });
+    {% endif %}
+    </script>
+
+    </body>
+{% endblock %}

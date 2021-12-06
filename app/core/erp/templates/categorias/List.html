@@ -1,0 +1,33 @@
+{% extends 'List.html' %}
+{% load static %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%">Nro</th>
+        <th scope="col" style="width: 30%">Nombres</th>
+
+        <th scope="col" style="width: 30%">Descripción</th>
+        <th scope="col" style="width: 10%">Opciones</th>
+
+    </tr>
+{% endblock %}
+
+{% block rows %}
+ {% for obj in object_list %}
+        <tr>
+            <td>{{ obj.id }}</td>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.desc }}</td>
+
+            <td class="text-center">
+                <a href="{% url 'erp:CategoryUpdateView' obj.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'erp:CategoryDeleteView' obj.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

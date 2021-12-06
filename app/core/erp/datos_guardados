@@ -1,0 +1,50 @@
+<!--  {% if form.errors %}
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+            <h5><i class="icon fas fa-ban"></i>Ha Ocurrido un error al Guardar un Registro</h5>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>
+                            {{ error }}
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}-->
+
+    HTML FORMULARIO
+
+
+    <script>
+        {% if form.errors %}
+            var errores = ''
+            {% for field in form %}
+                {% for error in field.errors %}
+                    errores = '{{ error }} \n';
+                {% endfor %}
+            {% endfor %}
+            Swal.fire({
+                icon: 'error',
+                title: 'Error..!',
+                text: errores,
+            });
+        {% endif %}
+
+
+  CLASE VIEW CATEGORIA  METODO POST
+
+  """"
+      print(request.POST)
+        form = CategoriaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(self.success_url)
+        self.object= None
+        context = self.get_context_data(**kwargs)
+        context['form'] = form
+        return render(request,self.template_name,context)"""
+
+  FORM DENTRO DEL BOTON AGREGAR
+  <!-- <button class="btn-primary btn-flat btnTest">-->
